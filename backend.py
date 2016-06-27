@@ -11,8 +11,8 @@ BASE_PATENT ='http://www.patentsview.org/api/patents/query'
 BASE_ASSIGNEE = 'http://www.patentsview.org/api/assignees/query'
 
 
-def make_query(query: Dict[str, Any], fields: List[str], options: Dict[str, Any]) -> str:
-    payload = ''.join(['q=', json.dumps(query),
+def make_query(query: str, fields: List[str], options: Dict[str, Any]) -> str:
+    payload = ''.join(['q=', query,
                        '&f=', json.dumps(fields),
                        '&o=', json.dumps(options)])
     return payload
