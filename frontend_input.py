@@ -1,15 +1,64 @@
 import json
 import ui
+import backend
         
              
-class BuildQuery(object):
-    def __init__(self):
+class QueryViewController(object):
+    def __init__(self, qfds, cods):
         self.v = ui.load_view('frontend_input')
-        qfds = ui.ListDataSource(items=['appcit_app_number',
-                                        'appcit_category',
-                                        'appcit_date',
-                                        'appcit_kind',
-                                        'appcit_sequence',
+        qf = self.v['queryfields']
+        co = self.v['comparisons']
+        
+        qfds = ui.ListDataSource(items=qfds)        
+        cods = ui.ListDataSource(items=cods)
+        qf.data_source = qf.delegate = qfds
+        co.data_source = co.delegate = cods
+        
+        qfds.action = self.qfds_action
+        cods.action = self.cods_action
+        self.v['btnadd2qry'].action = self.btnadd2qry_action
+        self.v['btnsendquery'].action = self.btnsend2qry_action
+        
+        self.v.present('panel')
+        
+    def qfds_action(self, sender):
+        self.v['lblquery'].text = sender.items[sender.selected_row]
+    
+    def cods_action(self, sender):
+        self.v['lblcomparison'].text = sender.items[sender.selected_row]
+        
+    def btnadd2qry_action(self, sender):
+        queryd = {self.v['lblcomparison'].text: {self.v['lblquery'].text: self.v['txtvalue'].text}}
+        self.v['txtvquery'].text = ''.join([self.v['txtvquery'].text,
+                                            json.dumps(queryd),
+                                            '\n'])
+                                            
+    def btnsend2qry_action(self, sender):
+        n = self.v['txtvquery'].text.count('\n')
+        subquery0 = self.v['txtvquery'].text.replace('\n', ', ', n-1)
+        subquery = subquery0.replace('\n', '')
+        self.query = ''.join(['{"_and":[', 
+                         subquery,
+                         ']}'])
+        fields = ['patent_number', 'patent_title', 'patent_date']
+        options = {'per_page':50}
+        payload = backend.make_query(self.query, fields, options)
+        print('Query String\n', payload, '\n')
+        r = backend.get_info(payload)
+        print('Encoded URL\n', r.url, '\n')
+        print('Status Code\n', r.status_code, '\n')
+        print('****Response****', '\n', r.json(), '\n\n')
+        raw_output = backend.get_output(fields, r.json())
+        html_text = backend.formated_output(fields, raw_output)  
+                                            
+
+if __name__ == '__main__':
+    qfds =[
+           'appcit_app_number',
+           'appcit_category',
+           'appcit_date',
+           'appcit_kind',
+           'appcit_sequence',
                                         'app_country',
                                         'app_date',
                                         'app_number',
@@ -110,14 +159,14 @@ class BuildQuery(object):
                                         'patent_firstnamed_assignee_country',
                                         'patent_firstnamed_assignee_id',
                                         'patent_firstnamed_assignee_latitude',
-                                        'patent_firstnamed_assignee_location_id',
+                                    'patent_firstnamed_assignee_location_id',
                                         'patent_firstnamed_assignee_longitude',
                                         'patent_firstnamed_assignee_state',
                                         'patent_firstnamed_inventor_city',
                                         'patent_firstnamed_inventor_country',
                                         'patent_firstnamed_inventor_id',
                                         'patent_firstnamed_inventor_latitude',
-                                        'patent_firstnamed_inventor_location_id',
+                                    'patent_firstnamed_inventor_location_id',
                                         'patent_firstnamed_inventor_longitude',
                                         'patent_firstnamed_inventor_state',
                                         'patent_kind',
@@ -144,43 +193,22 @@ class BuildQuery(object):
                                         'uspc_total_num_assignees',
                                         'uspc_total_num_inventors',
                                         'uspc_total_num_patents'
-                                       ])
-        
-        qf = self.v['queryfields']
-        qf.data_source = qf.delegate = qfds
-        qfds.action = self.qfds_action
-        qf.reload_data()
-        cods = ui.ListDataSource(items=['_eq',
-                                        '_neq',
-                                        '_gt',
-                                        '_gte',
-                                        '_lt',
-                                        '_lte',
-                                        '_begins',
-                                        '_contains',
-                                        '_text_all',
-                                        '_text_any',
-                                        '_text_phrase'
-                                        '_not',
-                                        '_and',
-                                        '_or'
-                                       ])
-        co = self.v['comparisons']
-        co.data_source = co.delegate = cods
-        cods.action = self.cods_action
-        co.reload_data()
-        self.v['btnadd2qry'].action = self.btnadd2qry_action
-        self.v.present('panel')
-        
-    def qfds_action(self, sender):
-        self.v['lblquery'].text = sender.items[sender.selected_row]
-    
-    def cods_action(self, sender):
-        self.v['lblcomparison'].text = sender.items[sender.selected_row]
-        
-    def btnadd2qry_action(self, sender):
-        queryd = {self.v['lblquery'].text: self.v['txtvalue'].text}
-        self.v['txtvquery'].text = json.dumps(queryd)
+                                       ]
+    cods =[
+           '_eq',
+           '_neq',
+           '_gt',
+           '_gte',
+           '_lt',
+           '_lte',
+           '_begins',
+           '_contains',
+           '_text_all',
+           '_text_any',
+           '_text_phrase'
+           '_not',
+           '_and',
+           '_or'
+               ]                                       
+    QueryViewController(qfds, cods)
 
-
-BuildQuery()
