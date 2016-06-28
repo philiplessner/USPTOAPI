@@ -37,19 +37,10 @@ class QueryViewController(object):
         n = self.v['txtvquery'].text.count('\n')
         subquery0 = self.v['txtvquery'].text.replace('\n', ', ', n-1)
         subquery = subquery0.replace('\n', '')
-        self.query = ''.join(['{"_and":[', 
+        query = ''.join(['{"_and":[', 
                          subquery,
                          ']}'])
-        fields = ['patent_number', 'patent_title', 'patent_date']
-        options = {'per_page':50}
-        payload = backend.make_query(self.query, fields, options)
-        print('Query String\n', payload, '\n')
-        r = backend.get_info(payload)
-        print('Encoded URL\n', r.url, '\n')
-        print('Status Code\n', r.status_code, '\n')
-        print('****Response****', '\n', r.json(), '\n\n')
-        raw_output = backend.get_output(fields, r.json())
-        html_text = backend.formated_output(fields, raw_output)  
+        backend.input2output(query) 
                                             
 
 if __name__ == '__main__':
