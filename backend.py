@@ -5,6 +5,7 @@ import ui
 import requests
 from toolz import pluck
 import pytablewriter
+from outputviewcontroller import viewoutput
 
 
 BASE_PATENT ='http://www.patentsview.org/api/patents/query'
@@ -45,22 +46,23 @@ def formated_output(fields: List[str], raw_output: List[str]) -> str:
         f.write(html_end)
         html_text = f.getvalue()
     return html_text
-    
-    
-def input2query(queryfield: str, condition: str, value: str) -> Dict[str, Dict[str, str]]:
-    return {condition:{queryfield:value}}
 
-
-def join_queries(queries, join_condition='_and'):
-    return {join_condition:queries}
+def input2output(query):
+    fields = ['patent_number', 'patent_title', 'patent_date']
+    options = {'per_page':50}
+    payload = make_query(query, fields, options)
+    print('Query String\n', payload, '\n')
+    r = get_info(payload)
+    print('Encoded URL\n', r.url, '\n')
+    print('Status Code\n', r.status_code, '\n')
+    print('****Response****', '\n', r.json(), '\n\n')
+    raw_output = get_output(fields, r.json())
+    html_text = formated_output(fields, raw_output)
+    viewoutput(html_text)
+    
 
 
 if __name__ == '__main__':
-#    query = {'_and': [{'_gte':{'patent_date':'2014-04-01'}}, {'_contains':{'assignee_organization':'KEMET'}}]}
-    query1 = input2query('assignee_organization', '_contains', 'KEMET')
-    query2 = input2query('patent_date', '_gte', '2014-04-01')
-    query = join_queries([query1, query2], join_condition='_and')
-    print(query)
     fields = ['patent_number', 'patent_title', 'patent_date']
     options = {'per_page':50}
     payload = make_query(query, fields, options)
