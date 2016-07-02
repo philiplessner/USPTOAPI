@@ -6,7 +6,7 @@
     "nodes" : [
       {
         "selected" : false,
-        "frame" : "{{0, 66}, {346, 316}}",
+        "frame" : "{{6, 66}, {346, 316}}",
         "class" : "TableView",
         "nodes" : [
 
@@ -19,7 +19,7 @@
           "data_source_items" : "",
           "data_source_number_of_lines" : 3,
           "border_width" : 1,
-          "border_color" : "RGBA(0.086957,0.086957,1.000000,1.000000)",
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
           "data_source_delete_enabled" : false,
           "data_source_font_size" : 16,
           "row_height" : 44,
@@ -30,7 +30,7 @@
       },
       {
         "selected" : false,
-        "frame" : "{{6, 381}, {340, 32}}",
+        "frame" : "{{12, 303}, {340, 32}}",
         "class" : "Label",
         "nodes" : [
 
@@ -40,12 +40,12 @@
           "font_size" : 18,
           "name" : "lblquery",
           "frame" : "{{309, 496}, {150, 32}}",
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
           "uuid" : "6DAFB78E-460D-4223-ABAB-8F6507E2D036",
           "corner_radius" : 0,
           "text" : "",
           "alignment" : "left",
           "class" : "Label",
-          "border_color" : "RGBA(0.000000,0.000000,1.000000,1.000000)",
           "font_name" : "<System>"
         }
       },
@@ -62,7 +62,7 @@
           "background_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
           "frame" : "{{412, 284}, {200, 200}}",
           "data_source_items" : "",
-          "border_color" : "RGBA(0.355556,1.000000,0.033333,1.000000)",
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
           "data_source_number_of_lines" : 1,
           "border_width" : 1,
           "data_source_delete_enabled" : true,
@@ -75,28 +75,28 @@
       },
       {
         "selected" : false,
-        "frame" : "{{373, 381}, {150, 32}}",
+        "frame" : "{{373, 303}, {150, 32}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
           "border_width" : 1,
-          "corner_radius" : 0,
+          "class" : "Label",
           "font_name" : "<System>",
           "frame" : "{{437, 368}, {150, 32}}",
-          "border_color" : "RGBA(0.333333,1.000000,0.000000,1.000000)",
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "corner_radius" : 0,
           "uuid" : "70473956-DEEB-473D-8A7C-F410AD8CDB44",
           "text" : "",
           "alignment" : "left",
-          "class" : "Label",
           "name" : "lblcomparison",
           "font_size" : 18
         }
       },
       {
         "selected" : false,
-        "frame" : "{{545, 381}, {201, 32}}",
+        "frame" : "{{544, 305}, {201, 32}}",
         "class" : "TextField",
         "nodes" : [
 
@@ -130,8 +130,8 @@
           "text" : "Query Fields",
           "alignment" : "center",
           "class" : "Label",
-          "font_size" : 18,
-          "name" : "lblq"
+          "name" : "lblq",
+          "font_size" : 18
         }
       },
       {
@@ -148,13 +148,13 @@
           "text" : "Comparison Operators",
           "alignment" : "center",
           "class" : "Label",
-          "font_size" : 18,
-          "name" : "lblcomp"
+          "name" : "lblcomp",
+          "font_size" : 18
         }
       },
       {
         "selected" : false,
-        "frame" : "{{16, 469}, {110, 33}}",
+        "frame" : "{{464, 437}, {113, 30}}",
         "class" : "Button",
         "nodes" : [
 
@@ -173,7 +173,7 @@
       },
       {
         "selected" : false,
-        "frame" : "{{134, 469}, {313, 190}}",
+        "frame" : "{{143, 390}, {313, 221}}",
         "class" : "TextView",
         "nodes" : [
 
@@ -197,7 +197,7 @@
       },
       {
         "selected" : false,
-        "frame" : "{{16, 565}, {110, 33}}",
+        "frame" : "{{318, 847}, {114, 30}}",
         "class" : "Button",
         "nodes" : [
 
@@ -216,55 +216,57 @@
       },
       {
         "selected" : false,
-        "frame" : "{{234, 429}, {150, 32}}",
+        "frame" : "{{227, 350}, {150, 32}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
-          "font_size" : 18,
+          "name" : "lblqs",
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "E6323632-B4B1-4EA8-93E7-B40AE4D90944",
           "text" : "Query String",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "lblqs",
+          "font_size" : 18,
           "font_name" : "<System>"
         }
       },
       {
         "selected" : false,
-        "frame" : "{{578, 341}, {150, 32}}",
+        "frame" : "{{560, 265}, {152, 32}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
-          "font_size" : 18,
+          "name" : "lblval",
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "96E8E00D-0D66-4650-B0F6-23E79F5C9FC0",
           "text" : "Value",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "lblval",
+          "font_size" : 18,
           "font_name" : "<System>"
         }
       },
       {
         "selected" : false,
-        "frame" : "{{528, 469}, {200, 200}}",
+        "frame" : "{{19, 584}, {340, 293}}",
         "class" : "TableView",
         "nodes" : [
 
         ],
         "attributes" : {
           "uuid" : "D445225C-7EA5-41CB-9172-E676227AFBA2",
+          "corner_radius" : 0,
           "background_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
           "frame" : "{{284, 412}, {200, 200}}",
-          "data_source_items" : "Row 1\nRow 2\nRow 3",
-          "border_color" : "RGBA(0.027451,0.027451,0.027451,1.000000)",
+          "data_source_items" : "",
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
           "data_source_number_of_lines" : 1,
-          "data_source_delete_enabled" : true,
+          "border_width" : 1,
+          "data_source_delete_enabled" : false,
           "data_source_font_size" : 18,
           "row_height" : 44,
           "class" : "TableView",
@@ -274,29 +276,29 @@
       },
       {
         "selected" : false,
-        "frame" : "{{555, 423}, {150, 38}}",
+        "frame" : "{{94, 548}, {139, 38}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
-          "font_size" : 18,
+          "name" : "label1",
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "E6DEB335-98C3-475D-A255-AE7BD6997FB1",
           "text" : "Output Fields",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "label1",
+          "font_size" : 18,
           "font_name" : "<System>"
         }
       }
     ],
     "attributes" : {
-      "name" : "",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
       "enabled" : true,
       "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "name" : "",
       "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
-      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
       "flex" : ""
     }
   }
