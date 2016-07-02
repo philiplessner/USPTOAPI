@@ -47,8 +47,7 @@ def formated_output(fields: List[str], raw_output: List[str]) -> str:
         html_text = f.getvalue()
     return html_text
 
-def input2output(query):
-    fields = ['patent_number', 'patent_title', 'patent_date']
+def input2output(query: str, fields: List[str]) -> None:
     options = {'per_page':50}
     payload = make_query(query, fields, options)
     print('Query String\n', payload, '\n')
@@ -59,25 +58,3 @@ def input2output(query):
     raw_output = get_output(fields, r.json())
     html_text = formated_output(fields, raw_output)
     viewoutput(html_text)
-    
-
-
-if __name__ == '__main__':
-    fields = ['patent_number', 'patent_title', 'patent_date']
-    options = {'per_page':50}
-    payload = make_query(query, fields, options)
-    print('Query String\n', payload, '\n')
-    r = get_info(payload)
-    print('Encoded URL\n', r.url, '\n')
-    print('Status Code\n', r.status_code, '\n')
-    print('****Response****', '\n', r.json(), '\n\n')
-    raw_output = get_output(fields, r.json())
-    html_text = formated_output(fields, raw_output)
-    v = ui.View()
-    v.name = 'Test Web'
-    web = ui.WebView()
-    v.add_subview(web)
-    web.height = 1024
-    web.width = 720
-    web.load_html(html_text)
-    v.present('fullscreen')
