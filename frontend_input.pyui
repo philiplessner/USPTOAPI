@@ -40,12 +40,12 @@
           "font_size" : 18,
           "name" : "lblquery",
           "frame" : "{{309, 496}, {150, 32}}",
+          "class" : "Label",
           "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
           "uuid" : "6DAFB78E-460D-4223-ABAB-8F6507E2D036",
           "corner_radius" : 0,
           "text" : "",
           "alignment" : "left",
-          "class" : "Label",
           "font_name" : "<System>"
         }
       },
@@ -82,14 +82,14 @@
         ],
         "attributes" : {
           "border_width" : 1,
-          "class" : "Label",
+          "alignment" : "left",
           "font_name" : "<System>",
           "frame" : "{{437, 368}, {150, 32}}",
+          "class" : "Label",
           "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
           "corner_radius" : 0,
           "uuid" : "70473956-DEEB-473D-8A7C-F410AD8CDB44",
           "text" : "",
-          "alignment" : "left",
           "name" : "lblcomparison",
           "font_size" : 18
         }
@@ -130,8 +130,8 @@
           "text" : "Query Fields",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "lblq",
-          "font_size" : 18
+          "font_size" : 18,
+          "name" : "lblq"
         }
       },
       {
@@ -148,13 +148,13 @@
           "text" : "Comparison Operators",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "lblcomp",
-          "font_size" : 18
+          "font_size" : 18,
+          "name" : "lblcomp"
         }
       },
       {
         "selected" : false,
-        "frame" : "{{464, 437}, {113, 30}}",
+        "frame" : "{{295, 343}, {108, 25}}",
         "class" : "Button",
         "nodes" : [
 
@@ -173,7 +173,7 @@
       },
       {
         "selected" : false,
-        "frame" : "{{143, 390}, {313, 221}}",
+        "frame" : "{{6, 416}, {739, 181}}",
         "class" : "TextView",
         "nodes" : [
 
@@ -184,7 +184,7 @@
           "corner_radius" : 0,
           "frame" : "{{412, 284}, {200, 200}}",
           "border_color" : "RGBA(0.027451,0.000915,0.009760,1.000000)",
-          "editable" : false,
+          "editable" : true,
           "border_width" : 1,
           "alignment" : "left",
           "autocorrection_type" : "default",
@@ -216,19 +216,19 @@
       },
       {
         "selected" : false,
-        "frame" : "{{227, 350}, {150, 32}}",
+        "frame" : "{{302, 376}, {150, 32}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
-          "name" : "lblqs",
+          "font_size" : 18,
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "E6323632-B4B1-4EA8-93E7-B40AE4D90944",
           "text" : "Query String",
           "alignment" : "center",
           "class" : "Label",
-          "font_size" : 18,
+          "name" : "lblqs",
           "font_name" : "<System>"
         }
       },
@@ -240,19 +240,19 @@
 
         ],
         "attributes" : {
-          "name" : "lblval",
+          "font_size" : 18,
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "96E8E00D-0D66-4650-B0F6-23E79F5C9FC0",
           "text" : "Value",
           "alignment" : "center",
           "class" : "Label",
-          "font_size" : 18,
+          "name" : "lblval",
           "font_name" : "<System>"
         }
       },
       {
         "selected" : false,
-        "frame" : "{{19, 584}, {340, 293}}",
+        "frame" : "{{20, 605}, {340, 293}}",
         "class" : "TableView",
         "nodes" : [
 
@@ -276,29 +276,48 @@
       },
       {
         "selected" : false,
-        "frame" : "{{94, 548}, {139, 38}}",
+        "frame" : "{{94, 559}, {139, 38}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
-          "name" : "label1",
+          "font_size" : 18,
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "E6DEB335-98C3-475D-A255-AE7BD6997FB1",
           "text" : "Output Fields",
           "alignment" : "center",
           "class" : "Label",
-          "font_size" : 18,
+          "name" : "label1",
           "font_name" : "<System>"
+        }
+      },
+      {
+        "selected" : true,
+        "frame" : "{{508, 847}, {114, 30}}",
+        "class" : "Button",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "border_width" : 1,
+          "frame" : "{{472, 368}, {80, 32}}",
+          "title" : "Clear Query",
+          "class" : "Button",
+          "uuid" : "3E1ABD32-1409-4502-8D7B-C7CD8CDD112F",
+          "corner_radius" : 10,
+          "border_color" : "RGBA(0.000000,0.000000,1.000000,1.000000)",
+          "font_size" : 15,
+          "name" : "btnclearqry"
         }
       }
     ],
     "attributes" : {
-      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
       "enabled" : true,
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
       "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
       "name" : "",
-      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
       "flex" : ""
     }
   }
