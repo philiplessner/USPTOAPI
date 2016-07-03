@@ -1,10 +1,12 @@
 import json
 from io import StringIO
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Tuple
+import console
 import requests
 from toolz import pluck
 import pytablewriter
 from outputviewcontroller import viewoutput
+from errorviewcontroller import httperror_dialog, novaluesreturned_dialog
 
 
 BASE_PATENT ='http://www.patentsview.org/api/patents/query'
@@ -36,13 +38,17 @@ def get_info(payload: str, base: str =BASE_PATENT) -> Any:
         requests object
     '''
     r = requests.get(BASE_PATENT, params=payload)
-    if r.status_code == requests.codes.ok:
-        return r
-    else:
-        r.raise_for_status()
-    
+    try:
+        if (r.status_code == requests.codes.ok) and (r.json()['total_patent_count'] != 0):
+            return r
+        elif r.json()['total_patent_count'] == 0:
+            novaluesreturned_dialog(payload)
+        else:
+            r.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        httperror_dialog(e)
 
-def get_output(fields: List[str], response: Any) -> List[str]:
+def get_output(fields: List[str], response: Any) -> List[Tuple[str, ...]]:
     '''
     Extract raw output from returned query dictionary
     Parameters

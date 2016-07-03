@@ -10,3 +10,4 @@ def viewoutput(html_text: str) -> None:
     web.width = 720
     web.load_html(html_text)
     v.present('panel')
+    v.bring_to_front()
