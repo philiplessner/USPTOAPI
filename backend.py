@@ -12,12 +12,29 @@ BASE_ASSIGNEE = 'http://www.patentsview.org/api/assignees/query'
 
 
 def make_query(query: str, fields: List[str], options: Dict[str, Any]) -> str:
+    '''
+    Make a query string for USPTO API
+    Parameters
+        query: query string in json format
+        fields: list of output fields
+        options: dictionary of query options
+    Returns
+        json query string
+    '''
     return ''.join(['q=', query,
                     '&f=', json.dumps(fields),
                     '&o=', json.dumps(options)])
      
 
 def get_info(payload: str, base: str =BASE_PATENT) -> Any:
+    '''
+    Send Query to USPTO API endpoint and return results
+    Parameters
+        payload: json query string
+        base: http address of USPTO API endpoint
+    Returns
+        requests object
+    '''
     r = requests.get(BASE_PATENT, params=payload)
     if r.status_code == requests.codes.ok:
         return r
@@ -26,11 +43,27 @@ def get_info(payload: str, base: str =BASE_PATENT) -> Any:
     
 
 def get_output(fields: List[str], response: Any) -> List[str]:
+    '''
+    Extract raw output from returned query dictionary
+    Parameters
+        fields: list of output fields
+        response: dict from query response
+    Returns
+        list of tuples for output table
+    '''
     patents = response['patents']
     return list(pluck(fields, patents))
     
 
 def formated_output(fields: List[str], raw_output: List[str]) -> str:
+    '''
+    Make raw output into a HTML document with a formated HTML table
+    Parameters
+        fields: list of output fields
+        raw_output: list of tuples for output table
+    Returns
+        HTML string containg formatted HTML table
+    '''
     writer = pytablewriter.HtmlTableWriter()
     html_begin = '<!DOCTYPE HTML>\n<html>\n<head>\n'
     CSS = '''<style type="text/css">
