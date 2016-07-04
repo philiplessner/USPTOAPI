@@ -1,6 +1,7 @@
 import json
 import ui
 import backend
+from errorviewcontroller import noqueryfields_dialog
         
              
 class QueryViewController(object):
@@ -11,6 +12,7 @@ class QueryViewController(object):
         co = self.v['comparisons']
         of = self.v['outfields']
         
+        # Data sources
         qfds = ui.ListDataSource(items=qfdatasource)        
         cods = ui.ListDataSource(items=codatasource)
         self.ofds = ui.ListDataSource(items=ofdatasource)
@@ -19,11 +21,15 @@ class QueryViewController(object):
         of.data_source = of.delegate = self.ofds
         of.allows_multiple_selection = True
         
+        # Actions
         qfds.action = self.qfds_action
         cods.action = self.cods_action
         self.v['btnadd2qry'].action = self.btnadd2qry_action
         self.v['btnsendquery'].action = self.btnsend2qry_action
         self.v['btnclearqry'].action = self.btnclearqry_action
+        
+        # Query will be stored as a list of dict's
+        self.query = []
         
         self.v.present('panel')
         
@@ -35,23 +41,25 @@ class QueryViewController(object):
         
     def btnadd2qry_action(self, sender):
         queryd = {self.v['lblcomparison'].text: {self.v['lblquery'].text: self.v['txtvalue'].text}}
+        self.query.append(queryd)
         self.v['txtvquery'].text = ''.join([self.v['txtvquery'].text,
                                             json.dumps(queryd),
                                             '\n'])
                                             
     def btnsend2qry_action(self, sender):
-        n = self.v['txtvquery'].text.count('\n')
-        subquery0 = self.v['txtvquery'].text.replace('\n', ', ', n-1)
-        subquery = subquery0.replace('\n', '')
-        query = ''.join(['{"_and":[', 
-                         subquery,
-                         ']}'])
+        if len(self.query) > 1:    
+            queryp = {'_and':self.query}
+        elif len(self.query) == 1:
+            queryp = self.query[0]
+        else:
+            noqueryfields_dialog()
         fields = [self.ofds.items[rowtuple[1]] for rowtuple in
                   self.v['outfields'].selected_rows]
         options = {'per_page': int(self.v['txtnresults'].text)}
-        backend.input2output(query, fields, options)
+        backend.input2output(queryp, fields, options)
     
     def btnclearqry_action(self, sender):
+         self.query = []
          self.v['lblcomparison'].text = ''
          self.v['lblquery'].text = ''
          self.v['txtvalue'].text = ''
@@ -343,4 +351,3 @@ if __name__ == '__main__':
            '_or'
                ]                                       
     QueryViewController(qfds, cods, ofds)
-

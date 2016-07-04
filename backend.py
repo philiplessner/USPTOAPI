@@ -23,7 +23,7 @@ def make_query(query: str, fields: List[str], options: Dict[str, Any]) -> str:
     Returns
         json query string
     '''
-    return ''.join(['q=', query,
+    return ''.join(['q=', json.dumps(query),
                     '&f=', json.dumps(fields),
                     '&o=', json.dumps(options)])
      
