@@ -48,8 +48,8 @@ class QueryViewController(object):
                          ']}'])
         fields = [self.ofds.items[rowtuple[1]] for rowtuple in
                   self.v['outfields'].selected_rows]
-        print(fields)
-        backend.input2output(query, fields)
+        options = {'per_page': int(self.v['txtnresults'].text)}
+        backend.input2output(query, fields, options)
     
     def btnclearqry_action(self, sender):
          self.v['lblcomparison'].text = ''
