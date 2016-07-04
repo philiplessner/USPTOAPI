@@ -1,9 +1,8 @@
 import json
 from io import StringIO
 from typing import List, Dict, Any, Tuple
-import console
 import requests
-from toolz import pluck
+from toolz import pluck, compose, curry
 import pytablewriter
 from outputviewcontroller import viewoutput
 from errorviewcontroller import httperror_dialog, novaluesreturned_dialog
@@ -13,6 +12,7 @@ BASE_PATENT ='http://www.patentsview.org/api/patents/query'
 BASE_ASSIGNEE = 'http://www.patentsview.org/api/assignees/query'
 
 
+@curry
 def make_query(query: str, fields: List[str], options: Dict[str, Any]) -> str:
     '''
     Make a query string for USPTO API
@@ -39,15 +39,18 @@ def get_info(payload: str, base: str =BASE_PATENT) -> Any:
     '''
     r = requests.get(BASE_PATENT, params=payload)
     try:
-        if (r.status_code == requests.codes.ok) and (r.json()['total_patent_count'] != 0):
-            return r
-        elif r.json()['total_patent_count'] == 0:
-            novaluesreturned_dialog(payload)
+        if r.status_code == requests.codes.ok:
+            if r.json()['total_patent_count'] != 0:
+                return r.json()
+            else:
+                novaluesreturned_dialog(payload)
         else:
             r.raise_for_status()
     except requests.exceptions.HTTPError as e:
         httperror_dialog(e)
 
+
+@curry
 def get_output(fields: List[str], response: Any) -> List[Tuple[str, ...]]:
     '''
     Extract raw output from returned query dictionary
@@ -59,9 +62,10 @@ def get_output(fields: List[str], response: Any) -> List[Tuple[str, ...]]:
     '''
     patents = response['patents']
     return list(pluck(fields, patents))
-    
 
-def formated_output(fields: List[str], raw_output: List[str]) -> str:
+    
+@curry
+def formated_output(fields: List[str], raw_output: List[Tuple[str, ...]]) -> str:
     '''
     Make raw output into a HTML document with a formated HTML table
     Parameters
@@ -127,14 +131,10 @@ def formated_output(fields: List[str], raw_output: List[str]) -> str:
         html_text = f.getvalue()
     return html_text
 
-def input2output(query: str, fields: List[str]) -> None:
-    options = {'per_page':50}
-    payload = make_query(query, fields, options)
-    print('Query String\n', payload, '\n')
-    r = get_info(payload)
-    print('Encoded URL\n', r.url, '\n')
-    print('Status Code\n', r.status_code, '\n')
-    print('****Response****', '\n', r.json(), '\n\n')
-    raw_output = get_output(fields, r.json())
-    html_text = formated_output(fields, raw_output)
+def input2output(query: str, fields: List[str], options: Dict[str, int]) -> None:
+    inout = compose(formated_output(fields),
+                    get_output(fields),
+                    get_info,
+                    make_query(query, fields))
+    html_text = inout(options)
     viewoutput(html_text)
