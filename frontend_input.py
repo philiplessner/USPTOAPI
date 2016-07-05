@@ -5,13 +5,13 @@ from errorviewcontroller import noqueryfields_dialog
         
              
 class QueryViewController(object):
-    def __init__(self, qfdatasource, codatasource, ofdatasource):
+    def __init__(self, qfdatasource, codatasource, ofdatasource): 
         self.v = ui.load_view('frontend_input')
         self.v.name = 'USPTO API Input'
         qf = self.v['queryfields']
         co = self.v['comparisons']
         of = self.v['outfields']
-        
+
         # Data sources
         qfds = ui.ListDataSource(items=qfdatasource)        
         cods = ui.ListDataSource(items=codatasource)
@@ -20,6 +20,9 @@ class QueryViewController(object):
         co.data_source = co.delegate = cods
         of.data_source = of.delegate = self.ofds
         of.allows_multiple_selection = True
+        self.qds = ui.ListDataSource(items=[])
+        self.v['tblquery'].data_source = self.v['tblquery'].delegate = self.qds
+        
         
         # Actions
         qfds.action = self.qfds_action
@@ -27,6 +30,8 @@ class QueryViewController(object):
         self.v['btnadd2qry'].action = self.btnadd2qry_action
         self.v['btnsendquery'].action = self.btnsend2qry_action
         self.v['btnclearqry'].action = self.btnclearqry_action
+        
+        self.v['txtnresults'].keyboard_type = ui.KEYBOARD_DECIMAL_PAD
         
         # Query will be stored as a list of dict's
         self.query = []
@@ -42,9 +47,8 @@ class QueryViewController(object):
     def btnadd2qry_action(self, sender):
         queryd = {self.v['lblcomparison'].text: {self.v['lblquery'].text: self.v['txtvalue'].text}}
         self.query.append(queryd)
-        self.v['txtvquery'].text = ''.join([self.v['txtvquery'].text,
-                                            json.dumps(queryd),
-                                            '\n'])
+        self.qds.items.append(json.dumps(queryd))
+        self.v['tblquery'].reload_data()
                                             
     def btnsend2qry_action(self, sender):
         if len(self.query) > 1:    
@@ -63,11 +67,12 @@ class QueryViewController(object):
          self.v['lblcomparison'].text = ''
          self.v['lblquery'].text = ''
          self.v['txtvalue'].text = ''
-         self.v['txtvquery'].text = ''
+         self.qds.items = []
          self.v['outfields'].reload()
          self.v['queryfields'].reload()
          self.v['comparisons'].reload()
-                                            
+         self.v['tblquery'].reload()
+
 
 if __name__ == '__main__':
     qfds =[
@@ -351,3 +356,4 @@ if __name__ == '__main__':
            '_or'
                ]                                       
     QueryViewController(qfds, cods, ofds)
+
