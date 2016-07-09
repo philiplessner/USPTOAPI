@@ -13,11 +13,11 @@ BASE_ASSIGNEE = 'http://www.patentsview.org/api/assignees/query'
 
 
 @curry
-def make_query(query: str, fields: List[str], options: Dict[str, Any]) -> str:
+def make_query(query: Dict[str, str], fields: List[str], options: Dict[str, Any]) -> str:
     '''
     Make a query string for USPTO API
     Parameters
-        query: query string in json format
+        query: query dictionary
         fields: list of output fields
         options: dictionary of query options
     Returns
@@ -131,7 +131,7 @@ def formated_output(fields: List[str], raw_output: List[Tuple[str, ...]]) -> str
         html_text = f.getvalue()
     return html_text
 
-def input2output(query: str, fields: List[str], options: Dict[str, int]) -> None:
+def input2output(query: Dict[str, Any], fields: List[str], options: Dict[str, int]) -> None:
     inout = compose(formated_output(fields),
                     get_output(fields),
                     get_info,
