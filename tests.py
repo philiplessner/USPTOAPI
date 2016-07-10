@@ -3,16 +3,7 @@ from unittest.mock import Mock, patch
 import backend
 
 
-class BackendTests(unittest.TestCase):
-#    @classmethod
-#    def setUpClass(cls):
-#        cls.mock_get_patcher = patch('backend.requests.get')
-#        cls.mock_get = cls.mock_get_patcher.start()
-
-#    @classmethod
-#    def tearDownClass(cls):
-#        cls.mock_get_patcher.stop()
-        
+class BackendTests(unittest.TestCase):        
     def test_makequery(self):
         actual_payload = 'q={"_and": [{"_contains": {"assignee_organization": "KEMET"}}, {"_gte": {"patent_date": "2015-01-01"}}]}&f=["patent_date", "patent_number", "patent_title"]&o={"per_page": 50}'
         query = {'_and': [{'_contains': {'assignee_organization': 'KEMET'}}, {'_gte': {'patent_date': '2015-01-01'}}]} 
