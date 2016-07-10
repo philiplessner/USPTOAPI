@@ -31,6 +31,10 @@ class QueryViewController(object):
         self.v['btnsendquery'].action = self.btnsend2qry_action
         self.v['btnclearqry'].action = self.btnclearqry_action
         
+        # Static Elements
+        img = draw_line(768, 5)
+        self.v['imageview1'].image = img
+        self.v['imageview2'].image = img
         self.v['txtnresults'].keyboard_type = ui.KEYBOARD_DECIMAL_PAD
         
         # Query will be stored as a list of dict's
@@ -73,6 +77,16 @@ class QueryViewController(object):
          self.v['comparisons'].reload()
          self.v['tblquery'].reload()
 
+
+def draw_line(cwidth, cheight):
+    with ui.ImageContext(cwidth, cheight) as ctx:
+        ui.set_color('black')
+        p = ui.Path()
+        p.line_width = cheight
+        p.move_to(0, 0)
+        p.line_to(cwidth, 0)
+        p.stroke()
+        return ctx.get_image()
 
 if __name__ == '__main__':
     qfds =[

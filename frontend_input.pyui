@@ -6,6 +6,30 @@
     "nodes" : [
       {
         "selected" : false,
+        "frame" : "{{12, 383}, {733, 228}}",
+        "class" : "TableView",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "uuid" : "E487BDBD-2B8C-44D8-BD95-E062E7DBCFD4",
+          "corner_radius" : 0,
+          "background_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
+          "frame" : "{{284, 412}, {200, 200}}",
+          "data_source_items" : "",
+          "data_source_number_of_lines" : 1,
+          "border_width" : 1,
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "data_source_delete_enabled" : false,
+          "data_source_font_size" : 18,
+          "row_height" : 44,
+          "class" : "TableView",
+          "name" : "tblquery",
+          "flex" : "WH"
+        }
+      },
+      {
+        "selected" : false,
         "frame" : "{{6, 66}, {346, 316}}",
         "class" : "TableView",
         "nodes" : [
@@ -37,16 +61,16 @@
         ],
         "attributes" : {
           "border_width" : 1,
-          "text" : "",
-          "font_name" : "<System>",
+          "font_size" : 18,
+          "name" : "lblquery",
           "frame" : "{{309, 496}, {150, 32}}",
           "class" : "Label",
+          "corner_radius" : 0,
+          "text" : "",
           "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
           "alignment" : "left",
           "uuid" : "6DAFB78E-460D-4223-ABAB-8F6507E2D036",
-          "corner_radius" : 0,
-          "font_size" : 18,
-          "name" : "lblquery"
+          "font_name" : "<System>"
         }
       },
       {
@@ -82,16 +106,16 @@
         ],
         "attributes" : {
           "border_width" : 1,
-          "name" : "lblcomparison",
-          "font_size" : 18,
+          "corner_radius" : 0,
+          "font_name" : "<System>",
           "frame" : "{{437, 368}, {150, 32}}",
+          "uuid" : "70473956-DEEB-473D-8A7C-F410AD8CDB44",
           "class" : "Label",
           "text" : "",
           "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
           "alignment" : "left",
-          "corner_radius" : 0,
-          "uuid" : "70473956-DEEB-473D-8A7C-F410AD8CDB44",
-          "font_name" : "<System>"
+          "name" : "lblcomparison",
+          "font_size" : 18
         }
       },
       {
@@ -124,14 +148,14 @@
 
         ],
         "attributes" : {
-          "font_size" : 18,
+          "font_name" : "<System>",
           "frame" : "{{437, 368}, {150, 32}}",
           "uuid" : "99B41432-A6E4-448A-985E-48A58727E1C5",
           "text" : "Query Fields",
           "alignment" : "center",
           "class" : "Label",
           "name" : "lblq",
-          "font_name" : "<System>"
+          "font_size" : 18
         }
       },
       {
@@ -142,14 +166,14 @@
 
         ],
         "attributes" : {
-          "font_size" : 18,
+          "font_name" : "<System>",
           "frame" : "{{437, 368}, {150, 32}}",
           "uuid" : "95205C0E-F6DF-4264-AEE0-90FE3D2B570B",
           "text" : "Comparison Operators",
           "alignment" : "center",
           "class" : "Label",
           "name" : "lblcomp",
-          "font_name" : "<System>"
+          "font_size" : 18
         }
       },
       {
@@ -161,14 +185,14 @@
         ],
         "attributes" : {
           "border_width" : 0,
-          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "font_bold" : true,
           "frame" : "{{472, 368}, {80, 32}}",
           "title" : "Add to Query",
           "class" : "Button",
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
           "uuid" : "3E1ABD32-1409-4502-8D7B-C7CD8CDD112F",
           "corner_radius" : 10,
           "border_color" : "RGBA(0.000000,0.000000,1.000000,1.000000)",
-          "font_bold" : true,
           "font_size" : 17,
           "name" : "btnadd2qry"
         }
@@ -203,14 +227,14 @@
 
         ],
         "attributes" : {
-          "font_name" : "<System>",
+          "name" : "lblqs",
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "E6323632-B4B1-4EA8-93E7-B40AE4D90944",
           "text" : "Query",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "lblqs",
-          "font_size" : 18
+          "font_size" : 18,
+          "font_name" : "<System>"
         }
       },
       {
@@ -221,14 +245,14 @@
 
         ],
         "attributes" : {
-          "font_name" : "<System>",
+          "name" : "lblval",
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "96E8E00D-0D66-4650-B0F6-23E79F5C9FC0",
           "text" : "Value",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "lblval",
-          "font_size" : 18
+          "font_size" : 18,
+          "font_name" : "<System>"
         }
       },
       {
@@ -263,14 +287,14 @@
 
         ],
         "attributes" : {
-          "font_name" : "<System>",
+          "name" : "label1",
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "E6DEB335-98C3-475D-A255-AE7BD6997FB1",
           "text" : "Output Fields",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "label1",
-          "font_size" : 18
+          "font_size" : 18,
+          "font_name" : "<System>"
         }
       },
       {
@@ -282,14 +306,14 @@
         ],
         "attributes" : {
           "border_width" : 0,
-          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "font_bold" : true,
           "frame" : "{{472, 368}, {80, 32}}",
           "title" : "Clear Query",
           "class" : "Button",
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
           "uuid" : "3E1ABD32-1409-4502-8D7B-C7CD8CDD112F",
           "corner_radius" : 10,
           "border_color" : "RGBA(0.000000,0.000000,1.000000,1.000000)",
-          "font_bold" : true,
           "font_size" : 17,
           "name" : "btnclearqry"
         }
@@ -319,44 +343,48 @@
       },
       {
         "selected" : false,
-        "frame" : "{{471, 559}, {170, 32}}",
+        "frame" : "{{471, 565}, {170, 32}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
-          "font_name" : "<System>",
+          "font_size" : 18,
           "frame" : "{{309, 496}, {150, 32}}",
           "uuid" : "D89BEDC2-06DF-4549-BD9A-E44A03537454",
           "text" : "Number of Results ",
           "alignment" : "center",
           "class" : "Label",
-          "font_size" : 18,
-          "name" : "lblnresults"
+          "name" : "lblnresults",
+          "font_name" : "<System>"
         }
       },
       {
-        "selected" : true,
-        "frame" : "{{12, 383}, {733, 228}}",
-        "class" : "TableView",
+        "selected" : false,
+        "frame" : "{{0, 559}, {768, 5}}",
+        "class" : "ImageView",
         "nodes" : [
 
         ],
         "attributes" : {
-          "uuid" : "E487BDBD-2B8C-44D8-BD95-E062E7DBCFD4",
-          "corner_radius" : 0,
-          "background_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
-          "frame" : "{{284, 412}, {200, 200}}",
-          "data_source_items" : "",
-          "data_source_number_of_lines" : 1,
-          "border_width" : 1,
-          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
-          "data_source_delete_enabled" : false,
-          "data_source_font_size" : 18,
-          "row_height" : 44,
-          "class" : "TableView",
-          "name" : "tblquery",
-          "flex" : "WH"
+          "frame" : "{{334, 462}, {100, 100}}",
+          "class" : "ImageView",
+          "name" : "imageview1",
+          "uuid" : "BD0F030C-8E6C-44D3-855C-F59A5ED2EB34"
+        }
+      },
+      {
+        "selected" : false,
+        "frame" : "{{0, 850}, {768, 5}}",
+        "class" : "ImageView",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "frame" : "{{334, 462}, {100, 100}}",
+          "class" : "ImageView",
+          "name" : "imageview2",
+          "uuid" : "BD0F030C-8E6C-44D3-855C-F59A5ED2EB34"
         }
       }
     ],
